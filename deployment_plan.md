@@ -39,8 +39,8 @@ Pipeline Stack: LandingPagePipelineStack
 - ✅ 1.3: Create CodeConnection
 - ✅ 1.4: Update infra/bin/infra.ts
 - ✅ 1.5: Create pipeline-stack.ts
-- ➡️ 1.6: Bootstrap CDK
-- 🕣 1.7: Push to remote
+- ✅ 1.6: Bootstrap CDK
+- ➡️ 1.7: Push to remote
 - 🕣 1.8: Complete CodeConnection authorization
 - 🕣 1.9: Deploy pipeline stack
 - 🕣 1.10: Trigger pipeline
