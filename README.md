@@ -26,13 +26,21 @@ If you need the contact form to work, you also need to create an EmailJS account
 
 ## Deployment
 
-**Live URL:** https://d1rgub7dvme5zy.cloudfront.net
+**Preview URL:** https://d1rgub7dvme5zy.cloudfront.net (manual deployment)
 
-This application is deployed to AWS using CloudFront and S3. To deploy updates:
+**Production Pipeline:** [View Pipeline](https://us-east-1.console.aws.amazon.com/codesuite/codepipeline/pipelines/LandingPagePipeline/view)
 
-```bash
-./scripts/deploy.sh
-```
+This application has two deployment modes:
+
+1. **Manual Preview Deployment** - Deploy to a preview environment:
+   ```bash
+   ./scripts/deploy.sh
+   ```
+
+2. **Automated Production Pipeline** - Push to the `sergeyka-deploy-to-aws` branch to trigger automatic deployment:
+   ```bash
+   git push origin sergeyka-deploy-to-aws
+   ```
 
 For detailed deployment information, see [DEPLOYMENT.md](./DEPLOYMENT.md).
 
