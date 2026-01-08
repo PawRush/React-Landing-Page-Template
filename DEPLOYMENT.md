@@ -10,16 +10,31 @@ username: sergeyka
 description: Deploy React landing page template to AWS S3 + CloudFront
 ---
 
+# Deployment Summary
+
+Your app is deployed to AWS, and you now have a 'preview' URL (that doesn't change when you update GitHub), so you can share this link with others.
+
+**Live URL:** https://d1rgub7dvme5zy.cloudfront.net
+
+If you want to connect deployments to GitHub changes, you can ask your coding agent to `setup a AWS CodePipeline` which will use the AWS MCP server.
+
+The Services used in this deployment are:
+- **Amazon S3** - Static website hosting bucket
+- **Amazon CloudFront** - Global CDN for fast content delivery
+- **AWS CloudFormation** - Infrastructure as code deployment
+- **AWS Lambda** - Asset deployment automation
+- **AWS IAM** - Access control and permissions
+
+Questions? You can ask your Coding Agent follow-up questions like:
+- What resources were deployed to AWS?
+- How do I update my deployed application?
+- How do I set up a custom domain?
+- How do I monitor my application?
+- How do I deploy to production?
+
+---
+
 # Deployment Plan: LandingPage
-
-<!-- AGENT_INSTRUCTIONS
-Read this file first when continuing deployment.
-Complete ALL phases (Phase 1 AND Phase 2).
-Only stop between phases if context >80% used.
-Update timestamps and session log after each substep.
-
-SECURITY: Never log credentials, secrets, or sensitive data. Store secrets in AWS Secrets Manager only.
--->
 
 ## ✅ Phase 1: Frontend Deployment
 
@@ -43,46 +58,18 @@ CloudFront Domain: d1rgub7dvme5zy.cloudfront.net
 - ✅ 1.6: Execute deployment
 - ✅ 1.7: Capture deployment outputs
 
-### Checkpoint for Phase 1
-
-<!-- AGENT_INSTRUCTIONS
-MANDATORY: Continue to Phase 2 unless context >80% used.
-If stopping: Update status, inform user to continue with: 'Continue my ./deployment_plan.md'
--->
-
 ---
 
-## ➡️ Phase 2: Documentation
+## ✅ Phase 2: Documentation
 
 ```
-Status: ➡️ In Progress
+Status: ✅ Complete
 ```
-
-**CRITICAL**: This phase is MANDATORY. The deployment is incomplete without documentation.
-
-Complete deployment documentation with essential information. Keep guidance light - prompt customer to ask follow-up questions for additional details.
 
 ### Phase 2 Tasks
-- ➡️ 2.1: Update deployment_plan.md with final deployment information
-  - Deployment URL, stack names, distribution details
-  - Mark Phase 1 as ✅ Complete, Phase 2 as ✅ Complete
-  - Final session log entry with completion timestamp
-- 🕣 2.2: Add simple deployment section to README.md
-  - Deployment URL for accessing the application
-  - Basic deploy command: `./scripts/deploy.sh`
-  - Reference to DEPLOYMENT.md for full details
-- 🕣 2.3: Finalize deployment documentation
-  - Rename deployment_plan.md to DEPLOYMENT.md
-  - Remove all AGENT_INSTRUCTIONS comment blocks
-  - Add completion summary with actions taken
-  - Include follow-up questions that customers may choose to ask for more details
-  - Commit finalized documentation
-
-<!-- AGENT_INSTRUCTIONS
-MANDATORY: Complete ALL Phase 2 tasks before declaring deployment complete.
-Update each task as completed with ✅
-Include deployment URL, monitoring links, and essential commands
--->
+- ✅ 2.1: Update deployment_plan.md with final deployment information
+- ✅ 2.2: Add simple deployment section to README.md
+- ✅ 2.3: Finalize deployment documentation
 
 ---
 
@@ -101,7 +88,7 @@ npm run build && ./scripts/deploy.sh
 aws cloudformation describe-stack-events --stack-name LandingPageFrontend-preview-sergeyka
 
 # Invalidate cache
-aws cloudfront create-invalidation --distribution-id [id] --paths "/*"
+aws cloudfront create-invalidation --distribution-id EME2098GSM1II --paths "/*"
 ```
 
 ### Environment Reference
@@ -128,11 +115,11 @@ Secrets Management:
 
 ## Session Log
 
-### Session 1 - 2026-01-08T16:25:00Z
+### Session 1 - 2026-01-08T16:25:00Z - 2026-01-08T16:50:00Z
 ```
 Agent: Kiro
-Completed: Phase 1 - Full deployment complete
-Status: Phase 2 in progress
+Completed: Phase 1 & Phase 2 - Full deployment complete
+Status: Complete
 Notes: Successfully deployed React landing page to AWS CloudFront + S3
 Deployment URL: https://d1rgub7dvme5zy.cloudfront.net
 Distribution ID: EME2098GSM1II
