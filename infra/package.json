@@ -11,7 +11,9 @@
     "cdk": "cdk",
     "deploy": "npm run deploy:preview",
     "deploy:preview": "cdk deploy --all --require-approval never --progress events",
+    "deploy:pipeline": "cdk deploy LandingPagePipelineStack --context codeConnectionArn=arn:aws:codeconnections:us-east-1:625164594347:connection/35f61da1-dbb4-464a-929c-8261ff4b9d0a --context repositoryName=PawRush/React-Landing-Page-Template --context branchName=sergeyka-deploy-to-aws --require-approval never --progress events",
     "destroy": "cdk destroy --all",
+    "destroy:pipeline": "cdk destroy LandingPagePipelineStack --context codeConnectionArn=arn:aws:codeconnections:us-east-1:625164594347:connection/35f61da1-dbb4-464a-929c-8261ff4b9d0a",
     "synth": "cdk synth",
     "diff": "cdk diff"
   },
