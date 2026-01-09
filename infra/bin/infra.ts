@@ -12,7 +12,7 @@ const region = process.env.CDK_DEFAULT_REGION || "us-east-1";
 // Context values for pipeline
 const codeConnectionArn = app.node.tryGetContext("codeConnectionArn");
 const repositoryName = app.node.tryGetContext("repositoryName") || "PawRush/React-Landing-Page-Template";
-const branchName = app.node.tryGetContext("branchName") || "sergeyka-deploy-to-aws";
+const branchName = app.node.tryGetContext("branchName") || "sergeyka-deploy-to-aws2";
 
 // Deploy existing stacks directly (for local dev or preview environments)
 if (!codeConnectionArn) {
