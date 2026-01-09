@@ -29,9 +29,11 @@ If you need the contact form to work, you also need to create an EmailJS account
 
 ## Deployment
 
-Deployed at: https://d1rgub7dvme5zy.cloudfront.net, using the [deploy-frontend-app] Agent Standard Operation Procedure from the [AWS MCP](https://docs.aws.amazon.com/aws-mcp/latest/userguide/what-is-mcp-server.html).
+Preview: https://d1rgub7dvme5zy.cloudfront.net
 
-Deployment command: `./scripts/deploy.sh`
+Pipeline: https://us-east-1.console.aws.amazon.com/codesuite/codepipeline/pipelines/LandingPagePipeline/view
+
+Deploy: `git push origin sergeyka-deploy-to-aws3`
 
 See [DEPLOYMENT.md](./DEPLOYMENT.md) for full details.
 

@@ -1,10 +1,11 @@
 # Deployment Summary
 
-Your app is deployed to AWS with a 'preview' URL that doesn't change when you update GitHub. Share this link with others.
+Your app has a CodePipeline. Changes pushed to `sergeyka-deploy-to-aws3` branch will be deployed automatically.
 
-**Live URL:** https://d1rgub7dvme5zy.cloudfront.net
+**Preview URL:** https://d1rgub7dvme5zy.cloudfront.net
+**Production URL:** (will be available after first pipeline run)
 
-To connect deployments to GitHub changes, ask your coding agent to `setup a AWS CodePipeline`.
+**Pipeline Console:** https://us-east-1.console.aws.amazon.com/codesuite/codepipeline/pipelines/LandingPagePipeline/view
 
 Services used: CloudFront, S3, CloudFormation, IAM
 
