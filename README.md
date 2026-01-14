@@ -32,3 +32,11 @@ If you need the contact form to work, you also need to create an EmailJS account
 <a href="https://www.free-css.com/assets/files/free-css-templates/preview/page234/interact/">Free-CSS.com </a>
 
 ##### Issaaf kattan
+
+## Deployment
+
+Deployed at: https://d2gb674vtulhnm.cloudfront.net
+
+Deployment command: `./scripts/deploy.sh`
+
+See [DEPLOYMENT_PLAN.md](./DEPLOYMENT_PLAN.md) for full details.

@@ -23,18 +23,18 @@ Coding Agents should follow this Deployment Plan, and validate previous progress
 - [x] Step 5: Revisit Deployment Plan
 
 ## Phase 2: Build CDK Infrastructure
-- [ ] Step 6: Initialize CDK Foundation
-- [ ] Step 7: Generate CDK Stack
-- [ ] Step 8: Create Deployment Script
-- [ ] Step 9: Validate CDK Synth
+- [x] Step 6: Initialize CDK Foundation
+- [x] Step 7: Generate CDK Stack
+- [x] Step 8: Create Deployment Script
+- [x] Step 9: Validate CDK Synth
 
 ## Phase 3: Deploy and Validate
-- [ ] Step 10: Execute CDK Deployment
-- [ ] Step 11: Validate CloudFormation Stack
+- [x] Step 10: Execute CDK Deployment
+- [x] Step 11: Validate CloudFormation Stack
 
 ## Phase 4: Update Documentation
-- [ ] Step 12: Finalize Deployment Plan
-- [ ] Step 13: Update README.md
+- [x] Step 12: Finalize Deployment Plan
+- [x] Step 13: Update README.md
 
 ## Build Configuration
 
@@ -50,10 +50,10 @@ Coding Agents should follow this Deployment Plan, and validate previous progress
 
 ## Deployment Info
 
-- Deployment URL: (pending)
-- Stack name: (pending)
-- Distribution ID: (pending)
-- S3 Bucket: (pending)
+- Deployment URL: https://d2gb674vtulhnm.cloudfront.net
+- Stack name: LandingPage-preview-sergeyka
+- Distribution ID: E3C8U1WR0WSRWF
+- S3 Bucket: landingpage-preview-sergeyk-cftos3s3bucketcae9f2be-aa5uff84nui7
 
 ## Recovery Guide
 
