@@ -16,11 +16,11 @@ entry_point: index.html
 
 # Deployment Summary
 
-Your app is deployed to AWS with a 'preview' URL that doesn't change when you update GitHub. Share this link with others.
+Your app has a CodePipeline pipeline. Changes on GitHub branch deploy-to-aws will be deployed automatically. This is managed by CloudFormation stack LandingPagePipelineStack.
 
-To connect deployments to GitHub changes, ask your coding agent to `setup a AWS CodePipeline`.
+Pipeline console: https://us-east-1.console.aws.amazon.com/codesuite/codepipeline/pipelines/LandingPagePipeline/view
 
-Services used: CloudFront, S3, CloudFormation, IAM
+Services used: CodePipeline, CodeBuild, CodeConnections, CloudFront, S3, CloudFormation, IAM
 
 Questions? Ask your Coding Agent:
 - What resources were deployed to AWS?
@@ -29,17 +29,17 @@ Questions? Ask your Coding Agent:
 ## Quick Commands
 
 ```bash
-# View deployment status
-aws cloudformation describe-stacks --stack-name "LandingPageFrontend-preview-sergeyka" --query 'Stacks[0].StackStatus' --output text --no-cli-pager
+# View pipeline status
+aws codepipeline get-pipeline-state --name "LandingPagePipeline" --query 'stageStates[*].[stageName,latestExecution.status]' --output table --no-cli-pager
 
-# Invalidate CloudFront cache
-aws cloudfront create-invalidation --distribution-id "E1HUT8XES6M4X6" --paths "/*" --no-cli-pager
+# View build logs
+aws logs tail "/aws/codebuild/LandingPagePipelineStack-Synth" --follow --no-cli-pager
 
-# View CloudFront access logs (last hour)
-aws s3 ls "s3://landingpagefrontend-previ-cftos3cloudfrontloggingb-avvdbezgctdk/" --recursive | tail -20
+# Trigger pipeline manually
+aws codepipeline start-pipeline-execution --name "LandingPagePipeline" --no-cli-pager
 
-# Redeploy
-./scripts/deploy.sh
+# View production deployment status
+aws cloudformation describe-stacks --stack-name "LandingPageFrontend-prod" --query 'Stacks[0].StackStatus' --output text --no-cli-pager
 ```
 
 ## Production Readiness
@@ -115,3 +115,12 @@ Progress: Complete deployment from start to finish
 - Phase 3: Successfully deployed to AWS (LandingPageFrontend-preview-sergeyka)
 - Phase 4: Finalized documentation
 Status: COMPLETE
+
+### Session 2 - 2026-01-16T15:52:00Z - 2026-01-16T15:57:00Z
+Agent: Claude Sonnet 4.5
+Progress: Complete CI/CD pipeline setup
+- Phase 1: Detected existing infrastructure, used existing CodeConnection
+- Phase 2: Created CDK Pipeline Stack, deployed to AWS
+- Phase 3: Updated documentation with pipeline information
+Status: COMPLETE
+Pipeline: https://us-east-1.console.aws.amazon.com/codesuite/codepipeline/pipelines/LandingPagePipeline/view
