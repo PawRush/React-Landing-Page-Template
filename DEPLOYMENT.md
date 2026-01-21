@@ -3,9 +3,50 @@ sop_name: deploy-frontend-app
 repo_name: React-Landing-Page-Template
 app_name: LandingPage
 app_type: Frontend Application
-branch: master
+branch: deploy-to-aws
 created: 2026-01-21 19:33:00 UTC
-last_updated: 2026-01-21 19:33:00 UTC
+completed: 2026-01-21 20:47:00 UTC
+---
+
+# Deployment Summary
+
+Your app is deployed to AWS! Preview URL: https://dpxomn898005s.cloudfront.net
+
+**Next Step: Automate Deployments**
+
+You're currently using manual deployment. To automate deployments from GitHub, ask your coding agent to set up AWS CodePipeline using an agent SOP for pipeline creation. Try: "create a pipeline using AWS SOPs"
+
+Services used: CloudFront, S3, CloudFormation, IAM
+
+Questions? Ask your Coding Agent:
+- What resources were deployed to AWS?
+- How do I update my deployment?
+
+## Quick Commands
+
+```bash
+# View deployment status
+aws cloudformation describe-stacks --stack-name "LandingFrontend-preview-sergeyka" --query 'Stacks[0].StackStatus' --output text
+
+# Invalidate CloudFront cache
+aws cloudfront create-invalidation --distribution-id "E1FUAJKYRKNGJF" --paths "/*"
+
+# View CloudFront access logs (last hour)
+aws s3 ls "s3://landingfrontend-preview-s-cftos3cloudfrontloggingb-f4l6t1ionry4/" --recursive | tail -20
+
+# Redeploy
+./scripts/deploy.sh
+```
+
+## Production Readiness
+
+For production deployments, consider:
+- WAF Protection: Add AWS WAF with managed rules (Core Rule Set, Known Bad Inputs) and rate limiting
+- CSP Headers: Configure Content Security Policy in CloudFront response headers (`script-src 'self'`, `frame-ancestors 'none'`)
+- Custom Domain: Set up Route 53 and ACM certificate
+- Monitoring: CloudWatch alarms for 4xx/5xx errors and CloudFront metrics
+- Auth Redirect URLs: If using an auth provider (Auth0, Supabase, Firebase, Lovable, etc.), add your CloudFront URL to allowed redirect URLs
+
 ---
 
 # Deployment Plan: React Landing Page
@@ -56,8 +97,8 @@ Coding Agents should follow this Deployment Plan, and validate previous progress
   - URL: ✅ Accessible (200 OK)
 
 ## Phase 4: Update Documentation
-- [ ] Step 12: Finalize Deployment Plan
-- [ ] Step 13: Update README.md
+- [x] Step 12: Finalize Deployment Plan
+- [x] Step 13: Update README.md
 
 ## Deployment Info
 
@@ -73,7 +114,7 @@ Coding Agents should follow this Deployment Plan, and validate previous progress
 
 ```bash
 # Rollback
-cd infra && npx cdk destroy "LandingPageFrontend-preview-*"
+cd infra && npx cdk destroy "LandingFrontend-preview-sergeyka"
 
 # Redeploy
 ./scripts/deploy.sh
@@ -87,5 +128,5 @@ None.
 
 ### Session 1 - 2026-01-21 19:33:00 UTC
 Agent: Claude Sonnet 4.5
-Progress: Created deployment plan
-Next: Step 2 - Create deploy branch
+Progress: Full deployment completed - all phases successful
+Status: ✅ Deployment complete
