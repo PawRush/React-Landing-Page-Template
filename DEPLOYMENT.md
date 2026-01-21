@@ -10,32 +10,40 @@ completed: 2026-01-21 20:47:00 UTC
 
 # Deployment Summary
 
-Your app is deployed to AWS! Preview URL: https://dpxomn898005s.cloudfront.net
+Your app is deployed to AWS with automated CI/CD!
 
-**Next Step: Automate Deployments**
+**Production URL**: https://dpxomn898005s.cloudfront.net (manual deployment - preview)
+**Pipeline**: https://us-east-1.console.aws.amazon.com/codesuite/codepipeline/pipelines/LandingPagePipeline/view
 
-You're currently using manual deployment. To automate deployments from GitHub, ask your coding agent to set up AWS CodePipeline using an agent SOP for pipeline creation. Try: "create a pipeline using AWS SOPs"
+**Automated Deployment**: Push to the `deploy-to-aws` branch triggers automatic deployment to production
 
-Services used: CloudFront, S3, CloudFormation, IAM
+Services used: CodePipeline, CodeBuild, CodeConnections, CloudFront, S3, CloudFormation, IAM
 
 Questions? Ask your Coding Agent:
 - What resources were deployed to AWS?
 - How do I update my deployment?
+- How does the pipeline work?
 
 ## Quick Commands
 
 ```bash
-# View deployment status
-aws cloudformation describe-stacks --stack-name "LandingFrontend-preview-sergeyka" --query 'Stacks[0].StackStatus' --output text
+# View pipeline status
+aws codepipeline get-pipeline-state --name "LandingPagePipeline" --query 'stageStates[*].[stageName,latestExecution.status]' --output table
 
-# Invalidate CloudFront cache
-aws cloudfront create-invalidation --distribution-id "E1FUAJKYRKNGJF" --paths "/*"
+# View build logs
+aws logs tail "/aws/codebuild/LandingPagePipelineStack-PipelineBuildSynthCdkBuildProject" --follow
 
-# View CloudFront access logs (last hour)
-aws s3 ls "s3://landingfrontend-preview-s-cftos3cloudfrontloggingb-f4l6t1ionry4/" --recursive | tail -20
+# Manual pipeline trigger (if needed)
+aws codepipeline start-pipeline-execution --name "LandingPagePipeline"
 
-# Redeploy
+# Deploy to production
+git push origin deploy-to-aws
+
+# Manual deployment (for preview environments)
 ./scripts/deploy.sh
+
+# View deployment status
+aws cloudformation describe-stacks --stack-name "LandingFrontend-prod" --query 'Stacks[0].StackStatus' --output text
 ```
 
 ## Production Readiness
