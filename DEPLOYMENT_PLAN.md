@@ -36,8 +36,14 @@ last_updated: 2026-01-21 20:50:00 UTC
     - Using existing ARN: arn:aws:codeconnections:us-east-1:126593893432:connection/c140aa0c-7407-42c9-aa4b-7c81f5faf40b
 
 ## Phase 2: Build and Deploy Pipeline
-- [ ] Step 3: Create CDK Pipeline Stack
-- [ ] Step 4: CDK Bootstrap
+- [x] Step 3: Create CDK Pipeline Stack
+  - Updated infra/bin/infra.ts with pipeline conditional logic
+  - Created infra/lib/stacks/pipeline-stack.ts
+  - Added deploy:pipeline and destroy:pipeline scripts
+  - Verified TypeScript compilation: ✅
+  - Verified linting: ✅
+- [x] Step 4: CDK Bootstrap
+  - CDKToolkit stack: ✅ CREATE_COMPLETE (already bootstrapped)
 - [ ] Step 5: Deploy Pipeline
   - [ ] 5.1: Push to remote
   - [ ] 5.2: Authorize CodeConnection
