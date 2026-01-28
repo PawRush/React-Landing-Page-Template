@@ -1,22 +1,22 @@
 ---
-sop_name: deploy-frontend-app
+sop_name: setup-pipeline
 repo_name: React-Landing-Page-Template
 app_name: LandingPage
-app_type: Frontend Application (React)
+app_type: CI/CD Pipeline
 branch: deploy-to-aws-20260128_174824-sergeyka
 created: 2026-01-28 16:52:05 UTC
-completed: 2026-01-28 17:03:00 UTC
+completed: 2026-01-28 18:10:00 UTC
 ---
 
 # Deployment Summary
 
-Your app is deployed to AWS! Preview URL: https://dspmyrp9btr0q.cloudfront.net
+Your app has a CodePipeline pipeline. Changes on GitHub branch deploy-to-aws-20260128_174824-sergeyka will be deployed automatically. This is managed by CloudFormation stack LandingPagePipelineStack.
 
-**Next Step: Automate Deployments**
+Pipeline console: https://us-east-1.console.aws.amazon.com/codesuite/codepipeline/pipelines/LandingPagePipeline/view
 
-You're currently using manual deployment. To automate deployments from GitHub, ask your coding agent to set up AWS CodePipeline using an agent SOP for pipeline creation. Try: "create a pipeline using AWS SOPs"
+Production URL: https://dspmyrp9btr0q.cloudfront.net (managed by pipeline)
 
-Services used: CloudFront, S3, CloudFormation, IAM
+Services used: CodePipeline, CodeBuild, CodeConnections, CloudFormation, CloudFront, S3, IAM
 
 Questions? Ask your Coding Agent:
  - What resources were deployed to AWS?
@@ -25,17 +25,17 @@ Questions? Ask your Coding Agent:
 ## Quick Commands
 
 ```bash
-# View deployment status
-aws cloudformation describe-stacks --stack-name "LandingPageFrontend-preview-sergeyka" --query 'Stacks[0].StackStatus' --output text
+# View pipeline status
+aws codepipeline get-pipeline-state --name "LandingPagePipeline" --query 'stageStates[*].[stageName,latestExecution.status]' --output table
 
-# Invalidate CloudFront cache
-aws cloudfront create-invalidation --distribution-id "ECKHIXAKP0GNI" --paths "/*"
+# View build logs
+aws logs tail "/aws/codebuild/LandingPagePipelineStack-Synth" --follow
 
-# View CloudFront access logs (last hour)
-aws s3 ls "s3://landingpagefrontend-previ-cftos3cloudfrontloggingb-lwlu1sd1v0j6/" --recursive | tail -20
+# Trigger pipeline manually
+aws codepipeline start-pipeline-execution --name "LandingPagePipeline"
 
-# Redeploy
-./scripts/deploy.sh
+# View production stack status
+aws cloudformation describe-stacks --stack-name "Deploy-LandingPageFrontend-prod" --query 'Stacks[0].StackStatus' --output text
 ```
 
 ## Production Readiness
@@ -49,7 +49,57 @@ For production deployments, consider:
 
 ---
 
-# Deployment Plan: LandingPage
+# Pipeline Deployment Plan: LandingPage
+
+## Pipeline Phases Complete
+- [x] Phase 1: Gather Context and Configure
+- [x] Phase 2: Build and Deploy Pipeline
+- [x] Phase 3: Documentation
+
+## Pipeline Info
+
+- Package manager: npm
+- Repository: PawRush/React-Landing-Page-Template
+- Branch: deploy-to-aws-20260128_174824-sergeyka
+- CodeConnection ARN: arn:aws:codeconnections:us-east-1:126593893432:connection/c140aa0c-7407-42c9-aa4b-7c81f5faf40b
+- CodeConnection Status: AVAILABLE
+- Pipeline name: LandingPagePipeline
+- Pipeline URL: https://us-east-1.console.aws.amazon.com/codesuite/codepipeline/pipelines/LandingPagePipeline/view
+- Stack name: LandingPagePipelineStack
+- Production Stack: Deploy-LandingPageFrontend-prod
+- Quality checks: lint, test (E2E excluded)
+
+## Pipeline Stages
+
+1. **Source**: Pull from GitHub via CodeConnection
+2. **Build (Synth)**: Quality checks (lint, test) + CDK synthesis
+3. **UpdatePipeline**: Self-mutation (if pipeline changed)
+4. **Assets**: Publish file assets
+5. **Deploy**: Deploy LandingPageFrontend-prod stack
+
+## Deployment Trigger
+
+Push to branch to trigger deployment:
+```bash
+git push origin deploy-to-aws-20260128_174824-sergeyka
+```
+
+## Recovery Guide
+
+```bash
+# Rollback pipeline
+cd infra && npm run destroy:pipeline
+
+# Redeploy pipeline
+cd infra && npm run deploy:pipeline
+
+# Manual deployment (bypass pipeline)
+./scripts/deploy.sh
+```
+
+---
+
+# Original Deployment Plan: LandingPage
 
 Coding Agents should follow this Deployment Plan, and validate previous progress if picking up the Deployment in a new coding session.
 
@@ -114,3 +164,8 @@ None.
 Agent: Claude Sonnet 4.5
 Progress: Completed all phases - analyzed codebase, built CDK infrastructure, deployed to AWS, validated deployment
 Status: Deployment complete
+
+### Session 2 - 2026-01-28 18:04:00 UTC
+Agent: Claude Sonnet 4.5
+Progress: Created CI/CD pipeline - detected infrastructure, created PipelineStack, deployed to AWS, pipeline running
+Status: Pipeline deployment complete
