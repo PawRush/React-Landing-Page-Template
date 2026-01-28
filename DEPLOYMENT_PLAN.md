@@ -5,7 +5,7 @@ app_name: LandingPage
 app_type: Frontend Application (React)
 branch: deploy-to-aws-20260128_174824-sergeyka
 created: 2026-01-28 16:52:05 UTC
-last_updated: 2026-01-28 16:58:00 UTC
+last_updated: 2026-01-28 17:03:00 UTC
 ---
 
 # Deployment Plan: LandingPage
@@ -29,8 +29,8 @@ Coding Agents should follow this Deployment Plan, and validate previous progress
 - [x] Step 9: Validate CDK Synth
 
 ## Phase 3: Deploy and Validate
-- [ ] Step 10: Execute CDK Deployment
-- [ ] Step 11: Validate CloudFormation Stack
+- [x] Step 10: Execute CDK Deployment
+- [x] Step 11: Validate CloudFormation Stack
 
 ## Phase 4: Update Documentation
 - [ ] Step 12: Finalize Deployment Plan
@@ -45,10 +45,13 @@ Coding Agents should follow this Deployment Plan, and validate previous progress
 - CloudFront routing: Error responses to /index.html (404/403 → 200)
 - Base path: / (root)
 - Lint command: npm run lint
-- Deployment URL: (after completion)
+- Deployment URL: https://dspmyrp9btr0q.cloudfront.net
 - Stack name: LandingPageFrontend-preview-sergeyka
-- Distribution ID: (after creation)
-- S3 Bucket name: (after creation)
+- Distribution ID: ECKHIXAKP0GNI
+- S3 Bucket name: landingpagefrontend-preview-cftos3s3bucketcae9f2be-lzhdxojct02a
+- S3 Log Bucket: landingpagefrontend-previ-cftos3s3loggingbucket64b-vveqeu1ndnnt
+- CloudFront Log Bucket: landingpagefrontend-previ-cftos3cloudfrontloggingb-lwlu1sd1v0j6
+- Deployment timestamp: 2026-01-28 18:02:10 UTC
 
 ## Recovery Guide
 
