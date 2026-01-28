@@ -24,6 +24,14 @@ Change the data in the ```data.json``` file as well as add any images to ```publ
 You can also change styles by modifying the ```public/css``` files.
 If you need the contact form to work, you also need to create an EmailJS account, and modify the ```src/components/contact.jsx``` file to replace your own service ID, template ID and Public Key
 
+## Deployment
+
+Deployed at: https://dspmyrp9btr0q.cloudfront.net, using the [deploy-frontend-app] Agent Standard Operation Procedure from the [AWS MCP](https://docs.aws.amazon.com/aws-mcp/latest/userguide/what-is-mcp-server.html).
+
+Deployment command: `./scripts/deploy.sh`
+
+See [DEPLOYMENT.md](./DEPLOYMENT.md) for full details.
+
 ## Like this project?
 <a href="https://www.buymeacoffee.com/issaaf">Buy my a coffee ☕️</a>
 
