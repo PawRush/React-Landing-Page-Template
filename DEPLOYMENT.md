@@ -14,13 +14,15 @@ completed: 2026-01-28T16:40:00Z
 
 # Deployment Summary
 
-Your app is deployed to AWS! Preview URL: https://d35om2tbaulsas.cloudfront.net
+Your app is deployed to AWS! Production URL: https://d35om2tbaulsas.cloudfront.net
 
-**Next Step: Automate Deployments**
+**Automated Deployments Enabled**
 
-You're currently using manual deployment. To automate deployments from GitHub, ask your coding agent to set up AWS CodePipeline using an agent SOP for pipeline creation. Try: "create a pipeline using AWS SOPs"
+AWS CodePipeline has been configured for automated deployments from GitHub. Push to the `deploy-to-aws-20260128_161953-sergeyka` branch to trigger a deployment automatically.
 
-Services used: CloudFront, S3, CloudFormation, IAM
+Pipeline: [LandingPagePipeline](https://us-east-1.console.aws.amazon.com/codesuite/codepipeline/pipelines/LandingPagePipeline/view)
+
+Services used: CloudFront, S3, CloudFormation, IAM, CodePipeline, CodeBuild, CodeConnections
 
 Questions? Ask your Coding Agent:
  - What resources were deployed to AWS?
@@ -29,16 +31,22 @@ Questions? Ask your Coding Agent:
 ## Quick Commands
 
 ```bash
-# View deployment status
-aws cloudformation describe-stacks --stack-name "LandingPageFrontend-preview-sergeyka" --query 'Stacks[0].StackStatus' --output text
+# View pipeline status
+aws codepipeline get-pipeline-state --name "LandingPagePipeline" --query 'stageStates[*].[stageName,latestExecution.status]' --output table
+
+# View build logs
+aws logs tail "/aws/codebuild/LandingPagePipelineStack-Synth" --follow
+
+# Trigger pipeline manually (if needed)
+aws codepipeline start-pipeline-execution --name "LandingPagePipeline"
+
+# View production deployment status
+aws cloudformation describe-stacks --stack-name "LandingPageFrontend-prod" --query 'Stacks[0].StackStatus' --output text
 
 # Invalidate CloudFront cache
 aws cloudfront create-invalidation --distribution-id "E1QGPXIK6WWYH7" --paths "/*"
 
-# View CloudFront access logs (last hour)
-aws s3 ls "s3://landingpagefrontend-previ-cftos3cloudfrontloggingb-e5qvd6e0iz6w/" --recursive | tail -20
-
-# Redeploy
+# Manual redeploy (preview environment)
 ./scripts/deploy.sh
 ```
 

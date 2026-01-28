@@ -28,9 +28,17 @@ If you need the contact form to work, you also need to create an EmailJS account
 
 Deployed at: https://d35om2tbaulsas.cloudfront.net, using the deploy-frontend-app Agent Standard Operation Procedure from the [AWS MCP](https://docs.aws.amazon.com/aws-mcp/latest/userguide/what-is-mcp-server.html).
 
-Deployment command: `./scripts/deploy.sh`
+Manual deployment command: `./scripts/deploy.sh`
 
-See [DEPLOYMENT.md](./DEPLOYMENT.md) for full details.
+## Pipeline
+
+Pipeline: [LandingPagePipeline](https://us-east-1.console.aws.amazon.com/codesuite/codepipeline/pipelines/LandingPagePipeline/view)
+
+Deploy: `git push origin deploy-to-aws-20260128_161953-sergeyka`
+
+Automated deployments are enabled. Push to the `deploy-to-aws-20260128_161953-sergeyka` branch to trigger a deployment.
+
+See [DEPLOYMENT.md](./DEPLOYMENT.md) for full details. Created with the setup-pipeline Agent Standard Operation Procedure from the [AWS MCP](https://docs.aws.amazon.com/aws-mcp/latest/userguide/what-is-mcp-server.html).
 
 ## Like this project?
 <a href="https://www.buymeacoffee.com/issaaf">Buy my a coffee ☕️</a>
