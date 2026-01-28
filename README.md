@@ -30,7 +30,13 @@ Deployed at: https://dspmyrp9btr0q.cloudfront.net, using the [deploy-frontend-ap
 
 Deployment command: `./scripts/deploy.sh`
 
-See [DEPLOYMENT.md](./DEPLOYMENT.md) for full details.
+## Pipeline
+
+Pipeline: https://us-east-1.console.aws.amazon.com/codesuite/codepipeline/pipelines/LandingPagePipeline/view
+
+Deploy: `git push origin deploy-to-aws-20260128_174824-sergeyka`
+
+See [DEPLOYMENT.md](./DEPLOYMENT.md) for full details. Created with the [setup-pipeline] Agent Standard Operation Procedure from the [AWS MCP](https://docs.aws.amazon.com/aws-mcp/latest/userguide/what-is-mcp-server.html).
 
 ## Like this project?
 <a href="https://www.buymeacoffee.com/issaaf">Buy my a coffee ☕️</a>
